@@ -1,6 +1,6 @@
 import { supabase } from '@/lib/supabaseClient'
 import { Memo, MemoFormData } from '@/types/memo'
-import { memoRowToMemo, memoToMemoRow, MemoRow, MemoSummaryRow } from '@/lib/supabaseClient'
+import { memoRowToMemo, memoToMemoRow, MemoRow } from '@/lib/supabaseClient'
 import { v4 as uuidv4 } from 'uuid'
 
 export const memoRepository = {
@@ -154,7 +154,7 @@ export const memoSummaryRepository = {
   },
 
   // 요약 저장
-  async saveSummary(memoId: string, summary: string, model?: string, meta?: Record<string, any>): Promise<void> {
+  async saveSummary(memoId: string, summary: string, model?: string, meta?: Record<string, unknown>): Promise<void> {
     const { error } = await supabase.from('memo_summaries').insert({
       memo_id: memoId,
       summary,
